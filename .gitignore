@@ -1,1 +1,15 @@
-dev_resources
+# Python
+__pycache__/
+*.py[cod]
+
+# Databases
+*.db
+*.sqlite3
+*.sqlite3   
+
+# Env & Secrets
+.env
+
+
+# Local dev artifacts
+dev_resources/
