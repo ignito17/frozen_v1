@@ -1,0 +1,12 @@
+{
+    "scanner":{
+        "limit":25,
+        "page":1
+    },
+    "source":{
+    "api_key":"718f4f0d4f813dbb2f91c8000463bfadbdcf174c6a4a4d1ca721f2814efff822",
+    "base_url":"http://api.openaq.org/v3",
+    "locations":"/locations",
+    "measurements":"/measurements"
+    }
+}

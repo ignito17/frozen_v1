@@ -1,0 +1,16 @@
+{
+    "pune":{
+        "name":"Pune",
+        "country_id":9,
+        "center":[18.5204, 73.8567],
+        "radius_m":25000,
+        "parameter":"pm25"
+    },
+    "delhi":{
+        "name":"Delhi",
+        "country_id":9,
+        "center":[28.6139,77.2090],
+        "radius_m":25000,
+        "parameter":"pm25"
+    }
+}
