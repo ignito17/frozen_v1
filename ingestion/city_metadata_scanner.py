@@ -4,6 +4,8 @@ from collections import Counter
 from frozen_v1.fs_root import CITIES_CONFIG, OPEN_AQI_CONFIG, DATA_DIR
 from frozen_v1.ingestion.http_validator import validate_response
 
+VERFIY_SSL=False     # for cts laptop
+
 # Loading data constraints
 # load cities data
 def load_cities():
@@ -31,7 +33,8 @@ def fetch_locations(headers, params):
         f"https://api.openaq.org/v3/locations",
         headers=headers,
         params=params,
-        timeout=30
+        timeout=30,
+        verify=VERFIY_SSL
     )
     validate_response(resp)
     return resp.json()["results"]
