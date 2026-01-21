@@ -7,7 +7,7 @@ engine = create_engine(DB_PATH)
 metadata = MetaData()
 metadata.reflect(bind=engine)
 
-dot = Digraph("Frozen_v1_ERD", format="svg")
+dot = Digraph("Frozen_v1_ERD", format="png")
 dot.attr(rankdir="LR", fontsize="10")
 
 # Draw tables
