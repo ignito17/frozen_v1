@@ -1,0 +1,30 @@
+digraph Frozen_v1_ERD {
+	fontsize=10 rankdir=LR
+	city [label=<
+    <table border="1" cellborder="0" cellspacing="0">
+        <tr><td bgcolor="lightgray"><b>city</b></td></tr>
+        <tr><td align='left'><b>city_key : TEXT</b></td></tr><tr><td align='left'>city_name : TEXT</td></tr><tr><td align='left'>center_latitude : REAL</td></tr><tr><td align='left'>center_longitude : REAL</td></tr><tr><td align='left'>radius_m : INTEGER</td></tr>
+    </table>
+    > shape=plaintext]
+	location [label=<
+    <table border="1" cellborder="0" cellspacing="0">
+        <tr><td bgcolor="lightgray"><b>location</b></td></tr>
+        <tr><td align='left'><b>location_id : INTEGER</b></td></tr><tr><td align='left'>city_key : TEXT</td></tr><tr><td align='left'>location_name : TEXT</td></tr><tr><td align='left'>latitude : REAL</td></tr><tr><td align='left'>longitude : REAL</td></tr>
+    </table>
+    > shape=plaintext]
+	measurement_pm25 [label=<
+    <table border="1" cellborder="0" cellspacing="0">
+        <tr><td bgcolor="lightgray"><b>measurement_pm25</b></td></tr>
+        <tr><td align='left'><b>sensor_id : INTEGER</b></td></tr><tr><td align='left'><b>datetime_utc_start : TEXT</b></td></tr><tr><td align='left'><b>datetime_utc_end : TEXT</b></td></tr><tr><td align='left'>interval_minutes : INTEGER</td></tr><tr><td align='left'>value : REAL</td></tr><tr><td align='left'>unit : TEXT</td></tr><tr><td align='left'>ingestion_ts : TEXT</td></tr>
+    </table>
+    > shape=plaintext]
+	sensor [label=<
+    <table border="1" cellborder="0" cellspacing="0">
+        <tr><td bgcolor="lightgray"><b>sensor</b></td></tr>
+        <tr><td align='left'><b>sensor_id : INTEGER</b></td></tr><tr><td align='left'>location_id : INTEGER</td></tr><tr><td align='left'>parameter : TEXT</td></tr><tr><td align='left'>unit : TEXT</td></tr><tr><td align='left'>datetime_first_utc : TEXT</td></tr><tr><td align='left'>datetime_last_utc : TEXT</td></tr>
+    </table>
+    > shape=plaintext]
+	city -> location [label="city_key → city_key"]
+	sensor -> measurement_pm25 [label="sensor_id → sensor_id"]
+	location -> sensor [label="location_id → location_id"]
+}
