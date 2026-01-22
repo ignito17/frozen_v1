@@ -139,7 +139,8 @@ def main():
         rows=extract_pm25_sensors(city_key,city["name"],locations,city["parameter"])
         all_rows.extend(rows)
     
-    output=DATA_DIR/f"metadata_locations_pm25_lt-{limit}_dt-{datetime.now().isoformat()}.csv"
+#    output=DATA_DIR/f"metadata_locations_pm25_lt-{limit}_dt-{datetime.now().isoformat()}.csv"
+    output=DATA_DIR/f"metadata_locations_pm25_lt-{limit}.csv"
     write_csv(all_rows,output)
     print(f"Saved {len(all_rows)} rows -> {output}")
     print("Sensor categories:")
