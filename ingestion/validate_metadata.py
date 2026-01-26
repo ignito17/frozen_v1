@@ -6,11 +6,11 @@ db_schema=DB_DIR/'fv1-db_schema.sql'
 db_views=DB_DIR/'fv1-db_views.sql'
 
 data=[x for x in os.listdir(DATA_DIR) if x[-1:-4:-1]]
-print(data)
+# print(data)
 raw_df=pd.read_csv(DATA_DIR/data[0])
 
 data_df=raw_df.copy()
-data_df=data_df.drop(columns=["city_name","datetime_first_local","datetime_last_local"])
+data_df=data_df.drop(columns=["city_name","datetime_first_local","datetime_last_local","sensor_category"])
 # print(data_df.info(),data_df.head(10))
 
 # sqlite db connection
@@ -28,5 +28,14 @@ with open(db_schema,'r',encoding='utf-8') as sf, open(db_views,'r',encoding='utf
     cur_m.executescript(schema)
     cur_m.executescript(views)
 
-cur_m.execute("select name from sqlite_master where type in ('table','view','index');")
-print(cur_m.fetchall())
+tables=pd.read_sql(
+    "select name from sqlite_master where type='table' and name not like 'sqlite_%';",conn_m
+)
+schema={}
+for table in tables["name"]:
+    schema[table]=pd.read_sql(
+        f"PRAGMA table_info('{table}')",conn_m
+    ).set_index("cid")
+
+location_df=data_df[[str(col) for col in schema["location"]["name"]]]
+print(location_df)
